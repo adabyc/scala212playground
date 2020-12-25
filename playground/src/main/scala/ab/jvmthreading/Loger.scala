@@ -5,6 +5,6 @@ package ab.jvmthreading
   */
 trait Loger {
 
-  def show(msg: String) = println(s"${Thread.currentThread().getName} ${Thread.currentThread().getId} $msg")
-  def showT(msg: String) = println(s"${java.time.LocalTime.now} ${Thread.currentThread().getName} ${Thread.currentThread().getId} $msg")
+  def show(msg: String) = println(s"${Thread.currentThread().getName} (${Thread.currentThread().getId}) $msg")
+  def showT(msg: String) = println(s"${java.time.LocalTime.now} ${Thread.currentThread().getName} (${Thread.currentThread().getId}) $msg")
 }

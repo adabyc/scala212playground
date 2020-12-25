@@ -22,18 +22,6 @@ object ExecSvc_RejectedExecutionApp extends App with Loger {
 
   for (i <- 0 until nTasks) {
     //    exService.submit(new Task(i))
-    exService.execute(new Task(i))
-  }
-}
-
-class Task(var id: Int) extends Runnable with Loger {
-  override def run(): Unit = {
-    try {
-      showT(s"Running task $id...")
-      Thread.sleep(1000)
-      //      println(" Completed task {}", index)
-    } catch {
-      case e: InterruptedException => println(s"Task interrupted $e")
-    }
+    exService.execute(new Tazk(i))
   }
 }
