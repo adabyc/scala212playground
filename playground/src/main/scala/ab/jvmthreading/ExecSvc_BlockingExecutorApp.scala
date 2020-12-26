@@ -23,11 +23,11 @@ object ExecSvc_BlockingExecutorApp extends App with Loger {
   val exService = new ThreadPoolExecutor(nThreads, nThreads, 0L, TimeUnit.MILLISECONDS, queue)
 
   dispatch(1)
-  dispatch(2)
+//  dispatch(2)
 
   while (true) {
-    Thread.sleep(700)
-    showT("...main here")
+    Thread.sleep(1500)
+    showT("...main thread running...")
   }
 
   def dispatch(dispatchId: Int): Future[Unit] = Future {
@@ -39,18 +39,22 @@ object ExecSvc_BlockingExecutorApp extends App with Loger {
           case t: Tazk =>
             errorT(s"Tazk failure  ${t.id}")
 
+            executor.getQueue().put(r)
+
+            errorT(s"Tazk re-put  ${t.id}")
+
             /**
               * If rejectedExecutionHandler blocks, then it blocks caller.
               * However ThreadPool is thread-safe, hence it will not affect other callers submitting new tasks
               */
-            Thread.sleep(100000)
+//            Thread.sleep(100000)
           case _ => println("NOT RUNNABLE :((((((")
         }
       }
     })
 
     for (i <- 1 to nTasks) {
-      Thread.sleep(600)
+//      Thread.sleep(600)
       //    exService.submit(new Task(i))
       exService.execute(new Tazk(i))
     }
