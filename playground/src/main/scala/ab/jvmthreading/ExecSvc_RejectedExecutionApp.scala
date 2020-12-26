@@ -1,8 +1,7 @@
 package ab.jvmthreading
 
-import java.util.concurrent.LinkedBlockingQueue
-import java.util.concurrent.ThreadPoolExecutor
-import java.util.concurrent.TimeUnit
+import java.util.concurrent.{LinkedBlockingQueue, RejectedExecutionHandler, ThreadPoolExecutor, TimeUnit}
+import scala.concurrent.Future
 
 
 /**
@@ -10,6 +9,9 @@ import java.util.concurrent.TimeUnit
   */
 object ExecSvc_RejectedExecutionApp extends App with Loger {
 
+  import scala.concurrent.ExecutionContext.Implicits.global
+
+  showT(s"Starting App...")
   val nThreads = 3
   val nTasks = (nThreads * 2) + 1
   /**
@@ -20,8 +22,32 @@ object ExecSvc_RejectedExecutionApp extends App with Loger {
   val exService = new ThreadPoolExecutor(
     nThreads, nThreads, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue(nThreads))
 
-  for (i <- 0 until nTasks) {
-    //    exService.submit(new Task(i))
-    exService.execute(new Tazk(i))
+  Future {
+    showT("Starting Future...")
+    exService.setRejectedExecutionHandler(new RejectedExecutionHandler with Loger {
+      override def rejectedExecution(r: Runnable, executor: ThreadPoolExecutor): Unit = {
+        /** Executed on the caller's Thread (eg. main or Future's thread) */
+        r match {
+          case t: Tazk =>
+            errorT(s"Tazk failure  ${t.id}")
+          case _ => println("NOT RUNNABLE :((((((")
+        }
+      }
+    })
+
+    for (i <- 0 until nTasks) {
+      //    exService.submit(new Task(i))
+      exService.execute(new Tazk(i))
+    }
+    showT("Completed Future !")
+  }
+
+  while (true) {
+    Thread.sleep(700)
+    showT("...main here")
   }
 }
+
+//class RejectionHandler extends RejectedExecutionHandler {
+//  override def rejectedExecution(r: Runnable, executor: ThreadPoolExecutor): Unit = ???
+//}

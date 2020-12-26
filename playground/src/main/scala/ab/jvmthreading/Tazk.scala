@@ -1,13 +1,13 @@
 package ab.jvmthreading
 
-class Tazk(var id: Int) extends Runnable with Loger {
+case class Tazk(var id: Int) extends Runnable with Loger {
   override def run(): Unit = {
     try {
-      showT(s"Running task $id...")
+      showT(s"Running 1000 ms task $id...")
       Thread.sleep(1000)
-      //      println(" Completed task {}", index)
     } catch {
-      case e: InterruptedException => println(s"Task interrupted $e")
+      case e: InterruptedException =>
+        errorT(s"Task interrupted $e")
     }
   }
 }
