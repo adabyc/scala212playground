@@ -1,32 +1,27 @@
-//name := "scala212playground"
+import Dependencies._
 
-version := "0.1"
-
-scalaVersion := "2.12.6"
-scalacOptions += "-Ypartial-unification"
-
-libraryDependencies ++= Seq(
-  "org.scalactic" %% "scalactic" % "3.0.5",
-  "org.scalatest" %% "scalatest" % "3.0.5", // % "test",
-  "com.jsuereth" %% "scala-arm" % "2.0",
-  "org.typelevel" %% "cats-core" % "1.0.1",
-  "com.typesafe" % "config" % "1.3.2",
-  "com.chuusai" %% "shapeless" % "2.3.3",
-  "org.json4s" %% "json4s-jackson" % "3.6.6",
-  "com.softwaremill.sttp" %% "core" % "1.7.2"
-
+lazy val playground = (project in file("playground")).settings(
+  inThisBuild(
+    List(
+      organization := "ab.playground",
+      scalaVersion := "2.12.12",
+      version := "0.1"
+    )),
+  name := "Playground",
+  scalacOptions += "-Ypartial-unification",
+  scalacOptions += "-language:_",
+//  assemblyOutputPath in assembly := file("JobRunner.jar"),
+//  test in assembly := {},
+  Test / run / fork := true,
+  libraryDependencies ++= Seq(
+    Libraries.catsCore,
+    Libraries.config,
+    Libraries.scalaLogging,
+    Libraries.slf4jApi,
+    Libraries.logback,
+    Libraries.arm,
+    TestDeps.scalaTest,
+    TestDeps.mockito
+  )
 )
 
-scalacOptions in ThisBuild ++= Seq(
-  "-language:_",
-  "-Ypartial-unification",
-  //  "-Xfatal-warnings"
-)
-
-libraryDependencies ++= Seq(
-  "com.github.mpilquist" %% "simulacrum" % "0.13.0",
-  "org.scalaz" %% "scalaz-core" % "7.2.26"
-)
-
-addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.7")
-addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
