@@ -2,7 +2,7 @@ package ab.catz
 
 import cats.data._
 import cats.implicits._
-import org.scalatest.Matchers
+import org.scalatest.matchers.should.Matchers
 
 import scala.util.{Success, Try}
 

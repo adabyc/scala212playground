@@ -1,7 +1,7 @@
 package ab.hkt
 
 import ab.{Result, WrongWithEx, WrongWithMsg}
-import org.scalatest.Matchers
+import org.scalatest.matchers.should.Matchers
 
 import scala.util.{Failure, Success, Try}
 

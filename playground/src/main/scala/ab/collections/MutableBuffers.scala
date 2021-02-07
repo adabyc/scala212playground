@@ -1,7 +1,6 @@
 package CollectionsMutable
 import scala.collection.mutable._
-import scalaz.Scalaz._
-import org.scalatest._
+import org.scalatest.matchers.should.Matchers
 
 /**
   * Add / remove to collection

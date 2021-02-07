@@ -1,6 +1,6 @@
 package ab.implicitz
 
-import org.scalatest.Matchers
+import org.scalatest.matchers.should.Matchers
 
 /** Defines API (operations) for T */
 trait MyOp[T] {

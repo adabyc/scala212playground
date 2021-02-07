@@ -1,6 +1,6 @@
 package Collections
 
-import org.scalatest.Matchers
+import org.scalatest.matchers.should.Matchers
 // TODO: ITERABLES INTRODUCES VERY LITTLE COMPARING TO TRAVERSABLE => MOVE MOST OF THE CODE FROM HERE TO TRAVERSABLE
 /**
   * foreach(f: T=? U): Unit

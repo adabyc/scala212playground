@@ -1,6 +1,6 @@
 package ab.collections
 
-import org.scalatest.Matchers
+import org.scalatest.matchers.should.Matchers
 //https://docs.scala-lang.org/overviews/collections/concrete-immutable-collection-classes.html
 object SpecializedCollections extends App with Matchers {
 

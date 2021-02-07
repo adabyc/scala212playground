@@ -32,7 +32,7 @@ object Dependencies {
   }
 
   object TestDeps {
-    lazy val scalaTest = "org.scalatest" %% "scalatest" % Versions.scalaTest % "test"
+    lazy val scalaTest = "org.scalatest" %% "scalatest" % Versions.scalaTest
     lazy val mockito = "org.mockito" %% "mockito-scala" % Versions.mockito % "test"
   }
 

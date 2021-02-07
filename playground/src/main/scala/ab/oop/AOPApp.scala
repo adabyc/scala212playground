@@ -1,6 +1,6 @@
 package ab.oop
 
-import org.scalatest.Matchers
+import org.scalatest.matchers.should.Matchers
 
 object AOPApp extends App with Matchers {
 

@@ -69,7 +69,7 @@ object CurryVsPartial extends App {
     def curriedLine(a: Int)(b: Int)(x: Int): Int = multiplyAndPlus(a, b, x)
 
     val r0 = curriedLine(2)(3)(4)
-    val curriedFuntionValue = curriedLine(_)
+    val curriedFuntionValue = curriedLine _
     val r1 = curriedFuntionValue(2)(3)(4)
     println(s"Curried curriedFuntionValue ${curriedFuntionValue} result: ${r1}")
 

@@ -1,6 +1,6 @@
 package ab.patternmatching
 
-import org.scalatest.Matchers
+import org.scalatest.matchers.should.Matchers
 
 object PatternMatchingApp extends App with Matchers {
 

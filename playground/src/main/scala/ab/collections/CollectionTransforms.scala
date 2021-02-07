@@ -1,6 +1,5 @@
 package Collections
 import scala.collection.SortedMap
-import scalaz.Scalaz._
 
 object CollectionTransforms extends App {
 

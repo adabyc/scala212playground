@@ -1,6 +1,6 @@
 package ab.hkt.simple
 
-import org.scalatest.Matchers
+import org.scalatest.matchers.should.Matchers
 
 object ContextBoundApp extends App with Matchers {
 

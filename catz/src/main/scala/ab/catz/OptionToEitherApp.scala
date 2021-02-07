@@ -1,8 +1,9 @@
 package ab.catz
 
+import org.scalatest.matchers.should.Matchers
+
 //import scala.util.Try
 //import cats.implicits._
-import org.scalatest.Matchers
 
 object OptionToEitherApp extends App with Matchers {
 

@@ -2,7 +2,7 @@ package ab.catz
 
 import scala.util.Try
 import cats.implicits._
-import org.scalatest.Matchers
+import org.scalatest.matchers.should.Matchers
 
 object ExceptionToEitherApp extends App with Matchers {
 
