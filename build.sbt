@@ -40,6 +40,7 @@ lazy val catz = (project in file("catz")).settings(
   Test / run / fork := true,
   libraryDependencies ++= Seq(
     Libraries.catsCore,
+    Libraries.catsEffect,
     Libraries.config,
     Libraries.scalaLogging,
     Libraries.slf4jApi,

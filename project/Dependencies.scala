@@ -4,6 +4,7 @@ object Dependencies {
 
   object Versions {
     lazy val catsCore = "2.2.0"
+    lazy val catsEffect = "2.3.1"
     lazy val config = "1.4.1"
     lazy val scalaLogging = "3.9.2"
     lazy val slf4jApi = "1.7.28"
@@ -20,6 +21,7 @@ object Dependencies {
     lazy val config = "com.typesafe" % "config" % Versions.config
 
     lazy val catsCore = "org.typelevel" %% "cats-core" % Versions.catsCore
+    lazy val catsEffect = "org.typelevel" %% "cats-effect" % Versions.catsEffect
     lazy val arm = "com.jsuereth" %% "scala-arm" % Versions.arm
     lazy val scalactic = "org.scalactic" %% "scalactic" % Versions.scalaTest
 
