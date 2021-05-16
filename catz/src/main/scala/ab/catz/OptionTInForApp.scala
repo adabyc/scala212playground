@@ -30,7 +30,7 @@ object OptionTInForApp extends App with Matchers {
   Await.result(aggregatedResp.value, 0 nanos) shouldBe Option("201-Some(202)-203")
 
 
-  /** inner is bad */
+  /** inner is bad (map)*/
   val badResp2 = Option.empty[String]
 
   val aggregatedInnerBadResp = for {
@@ -42,6 +42,17 @@ object OptionTInForApp extends App with Matchers {
   }
 
   Await.result(aggregatedInnerBadResp.value, 0 nanos) shouldBe Option("201-None-203")
+
+  /** inner is bad (flatMap)*/
+  val aggregatedInnerBadResp2 = for {
+    resp1 <- goodAsyncResp1
+    resp2 <- OptionT(Future.successful(badResp2))
+    resp3 <- goodAsyncResp3
+  } yield {
+    s"$resp1-$resp2-$resp3"
+  }
+
+  Await.result(aggregatedInnerBadResp2.value, 0 nanos) shouldBe None
 
   /** Outer is bad */
   val badAsyncResp3 = OptionT(Future {

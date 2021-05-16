@@ -25,9 +25,9 @@ object OptionTApp extends App with Matchers {
 
   val badOptT = OptionT(badResp)
   val badResultT: OptionT[Try, String] = badOptT.filter(_ == "200")
-  badResultT.value shouldBe Try(None)
-  val badDataT = badResultT.map(_.toInt)
-  badDataT.value shouldBe Try(None)
+  badResultT.value shouldBe Success(None)
+  val badDataT = badResultT.map((x: String) => x.toInt)
+  badDataT.value shouldBe Success(None)
 
     /**  Without Monad transformer (OptionT) explicit version is as follows */
   val goodResult: Try[Option[String]] = goodResp.map(maybeOk => maybeOk.filter(_ == "200"))
